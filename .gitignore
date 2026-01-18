@@ -1,0 +1,7 @@
+uv.lock
+.python-version
+.venv
+test.py
+all_models.txt
+clips.txt
+dinos.txt
