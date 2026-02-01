@@ -4,14 +4,16 @@ import os
 ROOT = '/media/dioxane/MovieDisk/Dataset/SMVS'
 TASK = 'business_cards'
 CLASS = 'Palm'
-MODEL_NAME = 'vit_base_patch16_dinov3.lvd1689m'
+MODEL_NAME = 'vit_huge_plus_patch16_dinov3.lvd1689m'
 LAYER_IDX = 2
 
-K = 1
+K = 5
 
 query_feat = np.load(f"result/{MODEL_NAME}/{TASK}/{CLASS}/layer_{LAYER_IDX}_features.npy")
+# query_feat = np.load(f"result/{MODEL_NAME}/{TASK}/{CLASS}/embeddings.npy")
 query_label = np.load(f"result/{MODEL_NAME}/{TASK}/{CLASS}/files.npy", allow_pickle=True)
 gallery_feat = np.load(f"result/{MODEL_NAME}/{TASK}/Reference/layer_{LAYER_IDX}_features.npy")
+# gallery_feat = np.load(f"result/{MODEL_NAME}/{TASK}/Reference/embeddings.npy")
 gallery_label = np.load(f"result/{MODEL_NAME}/{TASK}/Reference/files.npy", allow_pickle=True)
 print(f"Query序列长度: {len(query_label)}, Gallery序列长度: {len(gallery_label)}")
 

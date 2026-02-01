@@ -8,12 +8,13 @@ from timm.data.transforms_factory import create_transform
 import torch.nn.functional as F
 from smvs import SMVSDataset
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+print(f"Using device: {device}")
 
 # 加载模型
 ROOT = '/media/dioxane/MovieDisk/Dataset/SMVS'
 TASK = 'business_cards'
-CLASS = 'Canon'
-MODEL_NAME = 'vit_base_patch16_dinov3.lvd1689m'
+CLASS = 'Reference'
+MODEL_NAME = 'vit_huge_plus_patch16_dinov3.lvd1689m'
 BATCH_SIZE = 16
 model = timm.create_model(MODEL_NAME, pretrained=True, features_only=True).to(device)
 model.eval()

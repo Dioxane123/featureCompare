@@ -7,3 +7,4 @@ dinos.txt
 .temp
 __pycache__/
 result/
+exp.py
