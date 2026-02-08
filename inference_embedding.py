@@ -7,13 +7,16 @@ from timm.data import resolve_model_data_config
 from timm.data.transforms_factory import create_transform
 import torch.nn.functional as F
 from smvs import SMVSDataset
+from disc21 import DISC21Dataset
 device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 # 加载模型
-ROOT = '/media/dioxane/MovieDisk/Dataset/SMVS'
-TASK = 'business_cards'
+# ROOT = '/media/dioxane/MovieDisk/Dataset/SMVS'
+ROOT = '/media/dioxane/MovieDisk/Dataset/disc21/references_0/images/references'
+# LIST = '/media/dioxane/MovieDisk/Dataset/disc21/filter_final_queries.csv'
+TASK = 'DISC21'
 CLASS = 'Reference'
-MODEL_NAME = 'vit_huge_plus_patch16_dinov3.lvd1689m'
+MODEL_NAME = 'vit_base_patch16_dinov3.lvd1689m'
 BATCH_SIZE = 16
 model = timm.create_model(MODEL_NAME, pretrained=True, num_classes=0).to(device)
 model.eval()
@@ -26,7 +29,8 @@ def get_image_embeddings(image_path, model):
     """
     读取图片，推理，并返回处理好的特征向量列表。
     """
-    dataset = SMVSDataset(image_path, data_config)
+    dataset = DISC21Dataset(data_config, image_path)
+    # dataset = SMVSDataset(image_path, data_config)
     dataloader = torch.utils.data.DataLoader(dataset, batch_size=BATCH_SIZE, shuffle=False)
     print(f"共发现{len(dataset)}张图片")
     
@@ -43,7 +47,8 @@ def get_image_embeddings(image_path, model):
             embedding_buffer.append(embedding.cpu().numpy())# check the type here!
     return embedding_buffer, file_paths_list
 
-embedding_buffer, file_paths_list = get_image_embeddings(f"{ROOT}/{TASK}/{CLASS}", model)
+# embedding_buffer, file_paths_list = get_image_embeddings(f"{ROOT}/{TASK}/{CLASS}", model)
+embedding_buffer, file_paths_list = get_image_embeddings(ROOT, model)
 
 os.makedirs(f"result/{MODEL_NAME}/{TASK}/{CLASS}", exist_ok=True)
 file_array = np.concatenate(file_paths_list, axis=0) # shape: [N,]
