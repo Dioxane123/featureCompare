@@ -6,17 +6,17 @@ ROOT = '/media/dioxane/MovieDisk/Dataset/SMVS'
 LIST = '/media/dioxane/MovieDisk/Dataset/disc21/filter_final_gt.csv'
 TASK = 'DISC21'
 CLASS = 'Queries'
-MODEL_NAME = 'vit_large_patch16_dinov3.lvd1689m'
+MODEL_NAME = 'vit_base_patch16_dinov3.lvd1689m'
 LAYER_IDX = 2
 
-K = 5
+K = 3
 
 # query_feat = np.load(f"result/{MODEL_NAME}/{TASK}/{CLASS}/layer_{LAYER_IDX}_features.npy")
 query_feat = np.load(f"result/{MODEL_NAME}/{TASK}/{CLASS}/embeddings.npy")
 query_label = np.load(f"result/{MODEL_NAME}/{TASK}/{CLASS}/files.npy", allow_pickle=True)
-# gallery_feat = np.load(f"result/{MODEL_NAME}/{TASK}/Reference/layer_{LAYER_IDX}_features.npy")
-gallery_feat = np.load(f"result/{MODEL_NAME}/{TASK}/Reference/embeddings.npy")
-gallery_label = np.load(f"result/{MODEL_NAME}/{TASK}/Reference/files.npy", allow_pickle=True)
+# gallery_feat = np.load(f"result/{MODEL_NAME}/{TASK}/References/layer_{LAYER_IDX}_features.npy")
+gallery_feat = np.load(f"result/{MODEL_NAME}/{TASK}/References/embeddings.npy")
+gallery_label = np.load(f"result/{MODEL_NAME}/{TASK}/References/files.npy", allow_pickle=True)
 print(f"Query序列长度: {len(query_label)}, Gallery序列长度: {len(gallery_label)}")
 
 gt_map = defaultdict(set)

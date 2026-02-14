@@ -181,7 +181,7 @@
 
 ```
 
-其中`final_ground_truth.csv`中仅有990张图片对应的reference在`reference_0`中。因此这一次我的queries由990张有真值的图片组成，refrences由全部50000张图片组成。由于`huge+(840M)`参数规模的模型在本地跑时间过长因此这次仅仅计算了`base(86M)`和`large(300M)`的Top-5.
+其中`final_ground_truth.csv`中仅有500张图片对应的reference在`reference_0`中。因此这一次我的queries由500张有真值的图片组成，refrences由全部50000张图片组成。由于`huge+(840M)`参数规模的模型在本地跑时间过长因此这次仅仅计算了`base(86M)`和`large(300M)`的Top-5.
 
 <table style="margin: auto"><thead>
   <tr>
@@ -194,19 +194,51 @@
 <tbody>
   <tr>
     <td>base(86M)</td>
-    <td>0.2606</td>
-    <td>0.2636</td>
-    <td>0.3273</td>
-    <td>0.3424</td>
+    <td>0.5160</td>
+    <td>0.5220</td>
+    <td>0.6480</td>
+    <td>0.6780</td>
   </tr>
   <tr>
     <td>large(300M)</td>
-    <td>0.3434</td>
-    <td>0.3354</td>
-    <td>0.3657</td>
-    <td>0.3697</td>
+    <td>0.6800</td>
+    <td>0.6640</td>
+    <td>0.7240</td>
+    <td>0.7320</td>
   </tr>
 </tbody>
 </table>
 
 这个数据集上可以明显看出随着图片查找难度变大和样本量变大，对于feature图提取得到的特征，层数越深效果越好，但都比不过直接embedding得到的特征。同时对于相同方法得到的特征，模型参数量越大效果越好。
+
+作为对比的Top-1和Top-3准确率数据
+
+<table style="margin: auto"><thead>
+  <tr>
+    <th></th>
+    <th>feature0</th>
+    <th>feature1</th>
+    <th>feature2</th>
+    <th>embedding</th>
+  </tr></thead>
+<tbody>
+  <tr>
+    <td>base(86M)</td>
+    <td>0.4540/0.5000</td>
+    <td>0.4620/0.5100</td>
+    <td>0.6100/0.6400</td>
+    <td>0.6380/0.6660</td>
+  </tr>
+  <tr>
+    <td>large(300M)</td>
+    <td>0.6240/0.6720</td>
+    <td>0.6120/0.6540</td>
+    <td>0.6880/0.7160</td>
+    <td>0.6940/0.7260</td>
+  </tr>
+</tbody>
+</table>
+
+## 第三周(2月15日)
+
+发现上周的数据集处理流程的问题，不小心往测试集里塞进去了一半左右没有正例的图片，正确修改后结果已经更正，基本和[帖子](https://medium.com/aimonks/clip-vs-dinov2-in-image-similarity-6fa5aa7ed8c6)差不多。接下来打算计算CLIP在SMVS和DISC21上的指标。

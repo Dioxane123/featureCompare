@@ -14,11 +14,11 @@ print(f"Using device: {device}")
 # 加载模型
 # ROOT = '/media/dioxane/MovieDisk/Dataset/SMVS'
 ROOT = '/media/dioxane/MovieDisk/Dataset/disc21/references_0/images/references'
-# LIST = '/media/dioxane/MovieDisk/Dataset/disc21/filter_final_queries.csv'
+LIST = '/media/dioxane/MovieDisk/Dataset/disc21/filter_queries.csv'
 # TASK = 'business_cards'
 TASK = 'DISC21'
 CLASS = 'References'
-MODEL_NAME = 'vit_large_patch16_dinov3.lvd1689m'
+MODEL_NAME = 'vit_base_patch16_dinov3.lvd1689m'
 BATCH_SIZE = 16
 model = timm.create_model(MODEL_NAME, pretrained=True, features_only=True).to(device)
 model.eval()
