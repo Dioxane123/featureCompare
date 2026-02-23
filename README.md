@@ -242,3 +242,27 @@
 ## 第三周(2月15日)
 
 发现上周的数据集处理流程的问题，不小心往测试集里塞进去了一半左右没有正例的图片，正确修改后结果已经更正，基本和[帖子](https://medium.com/aimonks/clip-vs-dinov2-in-image-similarity-6fa5aa7ed8c6)差不多。接下来打算计算CLIP在SMVS和DISC21上的指标。
+
+以下是CLIP模型提取的特征在DISC21数据集上Top-1/Top-3的结果。
+
+<table style="margin: auto"><thead>
+  <tr>
+    <th></th>
+    <th>top-1</th>
+    <th>top-3</th>
+  </tr></thead>
+<tbody>
+  <tr>
+    <td>base(86M)</td>
+    <td>0.2960</td>
+    <td>0.3280</td>
+  </tr>
+  <tr>
+    <td>large(300M)</td>
+    <td>0.3020</td>
+    <td>0.3560</td>
+  </tr>
+</tbody>
+</table>
+
+发现CLIP在SMVS上数据特别好，同时DINOv3上数据和先前测量不一致。后面需要重新计算指标

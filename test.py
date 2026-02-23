@@ -4,19 +4,19 @@ from collections import defaultdict
 
 ROOT = '/media/dioxane/MovieDisk/Dataset/SMVS'
 LIST = '/media/dioxane/MovieDisk/Dataset/disc21/filter_final_gt.csv'
-TASK = 'DISC21'
-CLASS = 'Queries'
-MODEL_NAME = 'vit_base_patch16_dinov3.lvd1689m'
+TASK = 'business_cards'
+CLASS = 'E63'
+MODEL_NAME = 'vit_huge_plus_patch16_dinov3.lvd1689m'
 LAYER_IDX = 2
 
-K = 3
+K = 5
 
 # query_feat = np.load(f"result/{MODEL_NAME}/{TASK}/{CLASS}/layer_{LAYER_IDX}_features.npy")
 query_feat = np.load(f"result/{MODEL_NAME}/{TASK}/{CLASS}/embeddings.npy")
 query_label = np.load(f"result/{MODEL_NAME}/{TASK}/{CLASS}/files.npy", allow_pickle=True)
 # gallery_feat = np.load(f"result/{MODEL_NAME}/{TASK}/References/layer_{LAYER_IDX}_features.npy")
-gallery_feat = np.load(f"result/{MODEL_NAME}/{TASK}/References/embeddings.npy")
-gallery_label = np.load(f"result/{MODEL_NAME}/{TASK}/References/files.npy", allow_pickle=True)
+gallery_feat = np.load(f"result/{MODEL_NAME}/{TASK}/Reference/embeddings.npy")
+gallery_label = np.load(f"result/{MODEL_NAME}/{TASK}/Reference/files.npy", allow_pickle=True)
 print(f"Query序列长度: {len(query_label)}, Gallery序列长度: {len(gallery_label)}")
 
 gt_map = defaultdict(set)
@@ -51,14 +51,15 @@ accuracy_count = 0
 #             break
 #     if correct_found:
 #         accuracy_count += 1
+# SMVS数据集：query文件名和gallery文件名相同就是匹配的真值
+# 不需要额外的GT文件
 for query, sims in results.items():
-    true_targets = gt_map.get(query, set())
     correct_found = False
     for gallery_img, score in sims:
-        if gallery_img in true_targets:
+        if query == gallery_img:  # 文件名相同即为匹配
             correct_found = True
             break
-    
+
     if correct_found:
         accuracy_count += 1
 
