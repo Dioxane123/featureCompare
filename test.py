@@ -5,7 +5,7 @@ from collections import defaultdict
 ROOT = '/media/dioxane/MovieDisk/Dataset/SMVS'
 LIST = '/media/dioxane/MovieDisk/Dataset/disc21/filter_final_gt.csv'
 TASK = 'business_cards'
-CLASS = 'E63'
+CLASS = 'Canon'
 MODEL_NAME = 'vit_huge_plus_patch16_dinov3.lvd1689m'
 LAYER_IDX = 2
 

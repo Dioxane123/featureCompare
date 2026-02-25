@@ -243,6 +243,41 @@
 
 发现上周的数据集处理流程的问题，不小心往测试集里塞进去了一半左右没有正例的图片，正确修改后结果已经更正，基本和[帖子](https://medium.com/aimonks/clip-vs-dinov2-in-image-similarity-6fa5aa7ed8c6)差不多。接下来打算计算CLIP在SMVS和DISC21上的指标。
 
+下面是dinoV3仅使用embedding作为图像特征在SMVS数据集上Top-1/Top-3结果。
+
+<table style="margin: auto"><thead>
+  <tr>
+    <th></th>
+    <th>Canon</th>
+    <th>Droid</th>
+    <th>E63</th>
+    <th>Palm</th>
+  </tr></thead>
+<tbody>
+  <tr>
+    <td>base(86M)</td>
+    <td>0.55/0.67</td>
+    <td>0.64/0.75</td>
+    <td>0.58/0.71</td>
+    <td>0.32/0.48</td>
+  </tr>
+  <tr>
+    <td>large(300M)</td>
+    <td>0.53/0.72</td>
+    <td>0.60/0.76</td>
+    <td>0.61/0.77</td>
+    <td>0.28/0.46</td>
+  </tr>
+  <tr>
+    <td>huge+(840M)(CPU)</td>
+    <td>1</td>
+    <td>1</td>
+    <td>1</td>
+    <td>1</td>
+  </tr>
+</tbody>
+</table>
+
 以下是CLIP模型提取的特征在DISC21数据集上Top-1/Top-3的结果。
 
 <table style="margin: auto"><thead>
@@ -264,5 +299,3 @@
   </tr>
 </tbody>
 </table>
-
-发现CLIP在SMVS上数据特别好，同时DINOv3上数据和先前测量不一致。后面需要重新计算指标
