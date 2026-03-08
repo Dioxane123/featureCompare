@@ -13,12 +13,11 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 # 配置参数
 ROOT = '/media/dioxane/MovieDisk/Dataset/SMVS'
-TASK = 'business_cards'
-MODEL_NAME = 'vit_huge_plus_patch16_dinov3.lvd1689m'
+MODEL_NAME = 'vit_large_patch14_clip_224.openai'
 BATCH_SIZE = 16
 
-# 子类列表（包含Reference）
-SUBCLASES = ['Canon', 'Droid', 'E63', 'Palm', 'Reference']
+# 所有task列表
+TASKS = ['business_cards', 'cd_covers', 'dvd_covers', 'landmarks', 'museum_paintings', 'print', 'video_frames']
 
 # 加载模型
 print(f"Loading model: {MODEL_NAME}")
@@ -28,6 +27,18 @@ model.eval()
 # 定义预处理
 data_config = resolve_model_data_config(model)
 transforms = create_transform(**data_config, is_training=False)
+
+
+def get_subclasses(task_dir):
+    """
+    获取task目录下所有子目录（子类）
+    """
+    subclasses = []
+    for item in os.listdir(task_dir):
+        item_path = os.path.join(task_dir, item)
+        if os.path.isdir(item_path):
+            subclasses.append(item)
+    return sorted(subclasses)
 
 
 def load_and_process_images(image_dir, transforms):
@@ -58,7 +69,6 @@ def get_embeddings(images, model, batch_size=32):
     """
     批量获取图片的embeddings
     """
-    embeddings = []
     embedding_buffer = []
 
     # 创建 DataLoader
@@ -76,29 +86,45 @@ def get_embeddings(images, model, batch_size=32):
     return embedding_array
 
 
-# 创建结果目录
-result_dir = f"result/{MODEL_NAME}/{TASK}"
-os.makedirs(result_dir, exist_ok=True)
-
-# 遍历每个子类，计算embeddings
-for subclass in SUBCLASES:
-    subclass_dir = os.path.join(ROOT, TASK, subclass)
-    if not os.path.exists(subclass_dir):
-        print(f"Warning: {subclass_dir} does not exist, skipping...")
+# 遍历所有task
+for TASK in TASKS:
+    task_dir = os.path.join(ROOT, TASK)
+    if not os.path.exists(task_dir):
+        print(f"Warning: {task_dir} does not exist, skipping...")
         continue
 
-    print(f"\nProcessing {subclass}...")
-    images, file_names = load_and_process_images(subclass_dir, transforms)
-    print(f"  Found {len(images)} images")
+    print(f"\n{'='*60}")
+    print(f"Processing Task: {TASK}")
+    print(f"{'='*60}")
 
-    if len(images) == 0:
-        continue
+    # 获取该task的所有子类
+    subclasses = get_subclasses(task_dir)
+    print(f"Subclasses: {subclasses}")
 
-    embeddings = get_embeddings(images, model, BATCH_SIZE)
-    print(f"  Embeddings shape: {embeddings.shape}")
+    # 创建结果目录
+    result_dir = f"result/{MODEL_NAME}/{TASK}"
+    os.makedirs(result_dir, exist_ok=True)
 
-    # 保存embeddings和文件名
-    np.save(os.path.join(result_dir, f"{subclass}_embeddings.npy"), embeddings)
-    np.save(os.path.join(result_dir, f"{subclass}_files.npy"), np.array(file_names))
+    # 遍历每个子类，计算embeddings
+    for subclass in subclasses:
+        subclass_dir = os.path.join(task_dir, subclass)
+        if not os.path.isdir(subclass_dir):
+            continue
 
-print("\nAll embeddings computed and saved!")
+        print(f"\n  Processing {subclass}...")
+        images, file_names = load_and_process_images(subclass_dir, transforms)
+        print(f"    Found {len(images)} images")
+
+        if len(images) == 0:
+            continue
+
+        embeddings = get_embeddings(images, model, BATCH_SIZE)
+        print(f"    Embeddings shape: {embeddings.shape}")
+
+        # 保存embeddings和文件名
+        np.save(os.path.join(result_dir, f"{subclass}_embeddings.npy"), embeddings)
+        np.save(os.path.join(result_dir, f"{subclass}_files.npy"), np.array(file_names))
+
+print("\n" + "="*60)
+print("All embeddings computed and saved!")
+print("="*60)

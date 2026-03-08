@@ -211,7 +211,7 @@
 
 这个数据集上可以明显看出随着图片查找难度变大和样本量变大，对于feature图提取得到的特征，层数越深效果越好，但都比不过直接embedding得到的特征。同时对于相同方法得到的特征，模型参数量越大效果越好。
 
-作为对比的Top-1和Top-3准确率数据
+作为对比的Top-1和Top-3准确率还有mAP数据
 
 <table style="margin: auto"><thead>
   <tr>
@@ -223,18 +223,32 @@
   </tr></thead>
 <tbody>
   <tr>
+    <td>small(21M)</td>
+    <td>/</td>
+    <td>/</td>
+    <td>/</td>
+    <td>0.5480/0.5900/0.5667</td>
+  </tr>
+  <tr>
+    <td>small+(29M)</td>
+    <td>/</td>
+    <td>/</td>
+    <td>/</td>
+    <td>0.5560/0.6040/0.5760</td>
+  </tr>
+  <tr>
     <td>base(86M)</td>
     <td>0.4540/0.5000</td>
     <td>0.4620/0.5100</td>
     <td>0.6100/0.6400</td>
-    <td>0.6380/0.6660</td>
+    <td>0.6380/0.6660/0.6510</td>
   </tr>
   <tr>
     <td>large(300M)</td>
     <td>0.6240/0.6720</td>
     <td>0.6120/0.6540</td>
     <td>0.6880/0.7160</td>
-    <td>0.6940/0.7260</td>
+    <td>0.6940/0.7260/0.7090</td>
   </tr>
 </tbody>
 </table>
@@ -255,6 +269,20 @@
   </tr></thead>
 <tbody>
   <tr>
+    <td>small(21M)</td>
+    <td>0.35/0.52</td>
+    <td>0.44/0.63</td>
+    <td>0.35/0.51</td>
+    <td>0.26/0.39</td>
+  </tr>
+  <tr>
+  </tr>
+    <td>small+(29M)</td>
+    <td>0.41/0.57</td>
+    <td>0.52/0.65</td>
+    <td>0.44/0.62</td>
+    <td>0.23/0.44</td>
+  <tr>
     <td>base(86M)</td>
     <td>0.55/0.67</td>
     <td>0.64/0.75</td>
@@ -269,11 +297,11 @@
     <td>0.28/0.46</td>
   </tr>
   <tr>
-    <td>huge+(840M)(CPU)</td>
-    <td>1</td>
-    <td>1</td>
-    <td>1</td>
-    <td>1</td>
+    <td>huge+(840M)</td>
+    <td>0.24/0.39</td>
+    <td>0.57/0.70</td>
+    <td>0.15/0.26</td>
+    <td>0.10/0.20</td>
   </tr>
 </tbody>
 </table>
@@ -285,17 +313,621 @@
     <th></th>
     <th>top-1</th>
     <th>top-3</th>
+    <th>mAP</th>
   </tr></thead>
 <tbody>
+  <tr>
+    <td>xsmall(8M)</td>
+    <td>0.2520</td>
+    <td>0.2820</td>
+  </tr>
+  <tr>
+    <td>medium(38M)</td>
+    <td>0.2940</td>
+    <td>0.3480</td>
   <tr>
     <td>base(86M)</td>
     <td>0.2960</td>
     <td>0.3280</td>
   </tr>
   <tr>
-    <td>large(300M)</td>
+    <td>large(304M)</td>
     <td>0.3020</td>
     <td>0.3560</td>
+  </tr>
+</tbody>
+</table>
+
+以下是CLIP模型提取的特征在SMVS数据集的business_cards分类上Top-1/Top-3的结果
+<table style="margin: auto"><thead>
+  <tr>
+    <th></th>
+    <th>Canon</th>
+    <th>Droid</th>
+    <th>E63</th>
+    <th>Palm</th>
+  </tr></thead>
+<tbody>
+  <tr>
+    <td>xsmall(8M)</td>
+    <td>0.46/0.65</td>
+    <td>0.39/0.59</td>
+    <td>0.16/0.40</td>
+    <td>0.17/0.31</td>
+  </tr>
+  <tr>
+    <td>medium(38M)</td>
+    <td>0.91/0.98</td>
+    <td>0.90/0.95</td>
+    <td>0.81/0.97</td>
+    <td>0.36/0.54</td>
+  </tr>
+  <tr>
+    <td>base(86M)</td>
+    <td>0.91/0.97</td>
+    <td>0.94/0.99</td>
+    <td>0.87/0.96</td>
+    <td>0.37/0.49</td>
+  </tr>
+  <tr>
+    <td>large(304M)</td>
+    <td>0.96/1.00</td>
+    <td>0.96/1.00</td>
+    <td>0.94/1.00</td>
+    <td>0.53/0.63</td>
+  </tr>
+</tbody>
+</table>
+
+## 第四周(3月8日)
+
+这周主要目标是补完所有的实验结果。
+
+### DinoV3-small(21M)
+
+<table style="margin: auto"><thead>
+  <tr>
+    <th></th>
+    <th>Top-1</th>
+    <th>Top-3</th>
+    <th>mAP</th>
+  </tr></thead>
+<tbody>
+  <tr>
+    <td>business_cards</td>
+    <td>0.3500</td>
+    <td>0.5152</td>
+    <td>0.4208</td>
+  </tr>
+  <tr>
+    <td>cd_covers</td>
+    <td>0.5275</td>
+    <td>0.6650</td>
+    <td>0.5850</td>
+  </tr>
+  <tr>
+    <td>dvd_covers</td>
+    <td>0.3425</td>
+    <td>0.4700</td>
+    <td>0.3992</td>
+  </tr>
+  <tr>
+    <td>landmarks</td>
+    <td>0.5509</td>
+    <td>0.7565</td>
+    <td>0.6397</td>
+  </tr>
+  <tr>
+    <td>museum_paintings</td>
+    <td>0.4725</td>
+    <td>0.6209</td>
+    <td>0.5421</td>
+  </tr>
+  <tr>
+    <td>print</td>
+    <td>0.3200</td>
+    <td>0.4575</td>
+    <td>0.3792</td>
+  </tr>
+  <tr>
+    <td>video_frames</td>
+    <td>0.7650</td>
+    <td>0.8575</td>
+    <td>0.8063</td>
+  </tr>
+  <tr>
+    <td>AVERAGE</td>
+    <td>0.4755</td>
+    <td>0.6200</td>
+    <td>0.5389</td>
+  </tr>
+</tbody>
+</table>
+
+### DinoV3-small+(29M)
+
+<table style="margin: auto"><thead>
+  <tr>
+    <th></th>
+    <th>Top-1</th>
+    <th>Top-3</th>
+    <th>mAP</th>
+  </tr></thead>
+<tbody>
+  <tr>
+    <td>business_cards</td>
+    <td>0.4000</td>
+    <td>0.5700</td>
+    <td>0.4771</td>
+  </tr>
+  <tr>
+    <td>cd_covers</td>
+    <td>0.5450</td>
+    <td>0.6900</td>
+    <td>0.6058</td>
+  </tr>
+  <tr>
+    <td>dvd_covers</td>
+    <td>0.3775</td>
+    <td>0.5075</td>
+    <td>0.4358</td>
+  </tr>
+  <tr>
+    <td>landmarks</td>
+    <td>0.5349</td>
+    <td>0.7186</td>
+    <td>0.6164</td>
+  </tr>
+  <tr>
+    <td>museum_paintings</td>
+    <td>0.4643</td>
+    <td>0.6209</td>
+    <td>0.5288</td>
+  </tr>
+  <tr>
+    <td>print</td>
+    <td>0.3125</td>
+    <td>0.4825</td>
+    <td>0.3858</td>
+  </tr>
+  <tr>
+    <td>video_frames</td>
+    <td>0.7675</td>
+    <td>0.8850</td>
+    <td>0.8167</td>
+  </tr>
+  <tr>
+    <td>AVERAGE</td>
+    <td>0.4860</td>
+    <td>0.6392</td>
+    <td>0.5524</td>
+  </tr>
+</tbody>
+</table>
+
+### DinoV3-base(86M)
+
+<table style="margin: auto"><thead>
+  <tr>
+    <th></th>
+    <th>Top-1</th>
+    <th>Top-3</th>
+    <th>mAP</th>
+  </tr></thead>
+<tbody>
+  <tr>
+    <td>business_cards</td>
+    <td>0.5225</td>
+    <td>0.6525</td>
+    <td>0.5804</td>
+  </tr>
+  <tr>
+    <td>cd_covers</td>
+    <td>0.6900</td>
+    <td>0.7850</td>
+    <td>0.7329</td>
+  </tr>
+  <tr>
+    <td>dvd_covers</td>
+    <td>0.4825</td>
+    <td>0.6175</td>
+    <td>0.5408</td>
+  </tr>
+  <tr>
+    <td>landmarks</td>
+    <td>0.5749</td>
+    <td>0.7984</td>
+    <td>0.6747</td>
+  </tr>
+  <tr>
+    <td>museum_paintings</td>
+    <td>0.5027</td>
+    <td>0.6538</td>
+    <td>0.5664</td>
+  </tr>
+  <tr>
+    <td>print</td>
+    <td>0.4775</td>
+    <td>0.6150</td>
+    <td>0.5337</td>
+  </tr>
+  <tr>
+    <td>video_frames</td>
+    <td>0.8675</td>
+    <td>0.9500</td>
+    <td>0.9029</td>
+  </tr>
+  <tr>
+    <td>AVERAGE</td>
+    <td>0.5882</td>
+    <td>0.7246</td>
+    <td>0.6474</td>
+  </tr>
+</tbody>
+</table>
+
+### DinoV3-large(300M)
+
+<table style="margin: auto"><thead>
+  <tr>
+    <th></th>
+    <th>Top-1</th>
+    <th>Top-3</th>
+    <th>mAP</th>
+  </tr></thead>
+<tbody>
+  <tr>
+    <td>business_cards</td>
+    <td>0.5050</td>
+    <td>0.6775</td>
+    <td>0.5813</td>
+  </tr>
+  <tr>
+    <td>cd_covers</td>
+    <td>0.6300</td>
+    <td>0.7500</td>
+    <td>0.6846</td>
+  </tr>
+  <tr>
+    <td>dvd_covers</td>
+    <td>0.3875</td>
+    <td>0.4950</td>
+    <td>0.4363</td>
+  </tr>
+  <tr>
+    <td>landmarks</td>
+    <td>0.5429</td>
+    <td>0.7545</td>
+    <td>0.6367</td>
+  </tr>
+  <tr>
+    <td>museum_paintings</td>
+    <td>0.5714</td>
+    <td>0.7115</td>
+    <td>0.6277</td>
+  </tr>
+  <tr>
+    <td>print</td>
+    <td>0.4075</td>
+    <td>0.5725</td>
+    <td>0.4800</td>
+  </tr>
+  <tr>
+    <td>video_frames</td>
+    <td>0.9150</td>
+    <td>0.9575</td>
+    <td>0.9354</td>
+  </tr>
+  <tr>
+    <td>AVERAGE</td>
+    <td>0.5656</td>
+    <td>0.7026</td>
+    <td>0.6260</td>
+  </tr>
+</tbody>
+</table>
+
+### DinoV3-huge+(840M)
+
+<table style="margin: auto"><thead>
+  <tr>
+    <th></th>
+    <th>Top-1</th>
+    <th>Top-3</th>
+    <th>mAP</th>
+  </tr></thead>
+<tbody>
+  <tr>
+    <td>business_cards</td>
+    <td>0.2650</td>
+    <td>0.3875</td>
+    <td>0.3171</td>
+  </tr>
+  <tr>
+    <td>cd_covers</td>
+    <td>0.2500</td>
+    <td>0.3300</td>
+    <td>0.2850</td>
+  </tr>
+  <tr>
+    <td>dvd_covers</td>
+    <td>0.2275</td>
+    <td>0.3625</td>
+    <td>0.2867</td>
+  </tr>
+  <tr>
+    <td>landmarks</td>
+    <td>0.4511</td>
+    <td>0.6886</td>
+    <td>0.5559</td>
+  </tr>
+  <tr>
+    <td>museum_paintings</td>
+    <td>0.5879</td>
+    <td>0.7418</td>
+    <td>0.6566</td>
+  </tr>
+  <tr>
+    <td>print</td>
+    <td>0.4050</td>
+    <td>0.5225</td>
+    <td>0.4575</td>
+  </tr>
+  <tr>
+    <td>video_frames</td>
+    <td>0.8100</td>
+    <td>0.8450</td>
+    <td>0.8254</td>
+  </tr>
+  <tr>
+    <td>AVERAGE</td>
+    <td>0.4281</td>
+    <td>0.5540</td>
+    <td>0.4834</td>
+  </tr>
+</tbody>
+</table>
+
+### CLIP-xsmall(8M)
+
+<table style="margin: auto"><thead>
+  <tr>
+    <th></th>
+    <th>Top-1</th>
+    <th>Top-3</th>
+    <th>mAP</th>
+  </tr></thead>
+<tbody>
+  <tr>
+    <td>business_cards</td>
+    <td>0.2950</td>
+    <td>0.4875</td>
+    <td>0.3779</td>
+  </tr>
+  <tr>
+    <td>cd_covers</td>
+    <td>0.3625</td>
+    <td>0.5575</td>
+    <td>0.4483</td>
+  </tr>
+  <tr>
+    <td>dvd_covers</td>
+    <td>0.3150</td>
+    <td>0.5125</td>
+    <td>0.4012</td>
+  </tr>
+  <tr>
+    <td>landmarks</td>
+    <td>0.2974</td>
+    <td>0.4611</td>
+    <td>0.3699</td>
+  </tr>
+  <tr>
+    <td>museum_paintings</td>
+    <td>0.5797</td>
+    <td>0.7390</td>
+    <td>0.6506</td>
+  </tr>
+  <tr>
+    <td>print</td>
+    <td>0.1500</td>
+    <td>0.3125</td>
+    <td>0.2208</td>
+  </tr>
+  <tr>
+    <td>video_frames</td>
+    <td>0.7100</td>
+    <td>0.8750</td>
+    <td>0.7825</td>
+  </tr>
+  <tr>
+    <td>AVERAGE</td>
+    <td>0.3871</td>
+    <td>0.5636</td>
+    <td>0.4645</td>
+  </tr>
+</tbody>
+</table>
+
+### CLIP-medium(38M)
+
+<table style="margin: auto"><thead>
+  <tr>
+    <th></th>
+    <th>Top-1</th>
+    <th>Top-3</th>
+    <th>mAP</th>
+  </tr></thead>
+<tbody>
+  <tr>
+    <td>business_cards</td>
+    <td>0.7450</td>
+    <td>0.8600</td>
+    <td>0.7992</td>
+  </tr>
+  <tr>
+    <td>cd_covers</td>
+    <td>0.6875</td>
+    <td>0.7575</td>
+    <td>0.7175</td>
+  </tr>
+  <tr>
+    <td>dvd_covers</td>
+    <td>0.7575</td>
+    <td>0.8275</td>
+    <td>0.7892</td>
+  </tr>
+  <tr>
+    <td>landmarks</td>
+    <td>0.3513</td>
+    <td>0.5449</td>
+    <td>0.4391</td>
+  </tr>
+  <tr>
+    <td>museum_paintings</td>
+    <td>0.7692</td>
+    <td>0.8956</td>
+    <td>0.8265</td>
+  </tr>
+  <tr>
+    <td>print</td>
+    <td>0.4300</td>
+    <td>0.6275</td>
+    <td>0.5167</td>
+  </tr>
+  <tr>
+    <td>video_frames</td>
+    <td>0.9175</td>
+    <td>0.9650</td>
+    <td>0.9392</td>
+  </tr>
+  <tr>
+    <td>AVERAGE</td>
+    <td>0.6654</td>
+    <td>0.7826</td>
+    <td>0.7182</td>
+  </tr>
+</tbody>
+</table>
+
+### CLIP-base(86M)
+
+<table style="margin: auto"><thead>
+  <tr>
+    <th></th>
+    <th>Top-1</th>
+    <th>Top-3</th>
+    <th>mAP</th>
+  </tr></thead>
+<tbody>
+  <tr>
+    <td>business_cards</td>
+    <td>0.7725</td>
+    <td>0.8525</td>
+    <td>0.8083</td>
+  </tr>
+  <tr>
+    <td>cd_covers</td>
+    <td>0.7575</td>
+    <td>0.8325</td>
+    <td>0.7921</td>
+  </tr>
+  <tr>
+    <td>dvd_covers</td>
+    <td>0.8225</td>
+    <td>0.8850</td>
+    <td>0.8508</td>
+  </tr>
+  <tr>
+    <td>landmarks</td>
+    <td>0.2754</td>
+    <td>0.4671</td>
+    <td>0.3580</td>
+  </tr>
+  <tr>
+    <td>museum_paintings</td>
+    <td>0.5027</td>
+    <td>0.7253</td>
+    <td>0.5957</td>
+  </tr>
+  <tr>
+    <td>print</td>
+    <td>0.4125</td>
+    <td>0.5375</td>
+    <td>0.4675</td>
+  </tr>
+  <tr>
+    <td>video_frames</td>
+    <td>0.9475</td>
+    <td>0.9800</td>
+    <td>0.9629</td>
+  </tr>
+  <tr>
+    <td>AVERAGE</td>
+    <td>0.6415</td>
+    <td>0.7543</td>
+    <td>0.6908</td>
+  </tr>
+</tbody>
+</table>
+
+### CLIP-large(304M)
+
+<table style="margin: auto"><thead>
+  <tr>
+    <th></th>
+    <th>Top-1</th>
+    <th>Top-3</th>
+    <th>mAP</th>
+  </tr></thead>
+<tbody>
+  <tr>
+    <td>business_cards</td>
+    <td>0.8475</td>
+    <td>0.9075</td>
+    <td>0.8758</td>
+  </tr>
+  <tr>
+    <td>cd_covers</td>
+    <td>0.7825</td>
+    <td>0.8625</td>
+    <td>0.8200</td>
+  </tr>
+  <tr>
+    <td>dvd_covers</td>
+    <td>0.9200</td>
+    <td>0.9550</td>
+    <td>0.9350</td>
+  </tr>
+  <tr>
+    <td>landmarks</td>
+    <td>0.2994</td>
+    <td>0.4910</td>
+    <td>0.3826</td>
+  </tr>
+  <tr>
+    <td>museum_paintings</td>
+    <td>0.6319</td>
+    <td>0.8269</td>
+    <td>0.7202</td>
+  </tr>
+  <tr>
+    <td>print</td>
+    <td>0.4675</td>
+    <td>0.6275</td>
+    <td>0.5329</td>
+  </tr>
+  <tr>
+    <td>video_frames</td>
+    <td>0.9125</td>
+    <td>0.9725</td>
+    <td>0.9404</td>
+  </tr>
+  <tr>
+    <td>AVERAGE</td>
+    <td>0.6945</td>
+    <td>0.8061</td>
+    <td>0.7439</td>
   </tr>
 </tbody>
 </table>
