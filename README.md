@@ -320,20 +320,24 @@
     <td>xsmall(8M)</td>
     <td>0.2520</td>
     <td>0.2820</td>
+    <td>0.2657</td>
   </tr>
   <tr>
     <td>medium(38M)</td>
     <td>0.2940</td>
     <td>0.3480</td>
+    <td>0.3190</td>
   <tr>
     <td>base(86M)</td>
     <td>0.2960</td>
     <td>0.3280</td>
+    <td>0.3097</td>
   </tr>
   <tr>
     <td>large(304M)</td>
     <td>0.3020</td>
     <td>0.3560</td>
+    <td>0.3250</td>
   </tr>
 </tbody>
 </table>

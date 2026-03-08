@@ -7,7 +7,7 @@ from tqdm import tqdm
 DISC21_ROOT = '/media/dioxane/MovieDisk/Dataset/disc21'
 GROUND_TRUTH_FILE = os.path.join(DISC21_ROOT, 'filter_final_gt.csv')
 
-MODEL_NAME = 'vit_base_patch16_dinov3.lvd1689m'
+MODEL_NAME = 'vit_medium_patch16_clip_224.tinyclip_yfcc15m'
 
 # K值
 K_VALUES = [1, 3]

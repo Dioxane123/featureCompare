@@ -17,7 +17,7 @@ QUERY_DIR = os.path.join(DISC21_ROOT, 'final_queries/images/final_queries')
 REF_DIR = os.path.join(DISC21_ROOT, 'references_0/images/references')
 FILTER_QUERIES = os.path.join(DISC21_ROOT, 'filter_queries.csv')
 
-MODEL_NAME = 'vit_base_patch16_dinov3.lvd1689m'
+MODEL_NAME = 'vit_medium_patch16_clip_224.tinyclip_yfcc15m'
 BATCH_SIZE = 8  # 减小batch size以避免内存问题
 
 # 加载模型
