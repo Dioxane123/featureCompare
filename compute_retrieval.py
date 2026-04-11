@@ -4,10 +4,11 @@ from tqdm import tqdm
 
 
 # 配置参数
-MODEL_NAME = 'vit_large_patch14_clip_224.openai'
+MODEL_NAME = 'vit_small_patch16_dinov3.lvd1689m'
 
 # 所有task列表
-TASKS = ['business_cards', 'cd_covers', 'dvd_covers', 'landmarks', 'museum_paintings', 'print', 'video_frames']
+# TASKS = ['business_cards', 'cd_covers', 'dvd_covers', 'landmarks', 'museum_paintings', 'print', 'video_frames']
+TASKS = ['book_covers' ,'business_cards', 'cd_covers', 'dvd_covers', 'landmarks', 'museum_paintings', 'print', 'video_frames']
 
 # K值
 K_VALUES = [1, 3]

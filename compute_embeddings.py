@@ -13,11 +13,12 @@ device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
 # 配置参数
 ROOT = '/media/dioxane/MovieDisk/Dataset/SMVS'
-MODEL_NAME = 'vit_large_patch14_clip_224.openai'
+MODEL_NAME = 'vit_small_patch16_dinov3.lvd1689m'
 BATCH_SIZE = 16
 
 # 所有task列表
-TASKS = ['business_cards', 'cd_covers', 'dvd_covers', 'landmarks', 'museum_paintings', 'print', 'video_frames']
+# TASKS = ['business_cards', 'cd_covers', 'dvd_covers', 'landmarks', 'museum_paintings', 'print', 'video_frames']
+TASKS = ['book_covers']
 
 # 加载模型
 print(f"Loading model: {MODEL_NAME}")

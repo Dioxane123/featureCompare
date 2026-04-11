@@ -398,6 +398,12 @@
   </tr></thead>
 <tbody>
   <tr>
+    <td>book_covers</td>
+    <td>0.5421</td>
+    <td>0.6980</td>
+    <td>0.6118</td>
+  </tr>
+  <tr>
     <td>business_cards</td>
     <td>0.3500</td>
     <td>0.5152</td>
@@ -441,9 +447,9 @@
   </tr>
   <tr>
     <td>AVERAGE</td>
-    <td>0.4755</td>
-    <td>0.6200</td>
-    <td>0.5389</td>
+    <td>0.4838</td>
+    <td>0.6297</td>
+    <td>0.5480</td>
   </tr>
 </tbody>
 </table>
@@ -458,6 +464,12 @@
     <th>mAP</th>
   </tr></thead>
 <tbody>
+  <tr>
+    <td>book_covers</td>
+    <td>0.4851</td>
+    <td>0.6287</td>
+    <td>0.5524</td>
+  </tr>
   <tr>
     <td>business_cards</td>
     <td>0.4000</td>
@@ -502,8 +514,8 @@
   </tr>
   <tr>
     <td>AVERAGE</td>
-    <td>0.4860</td>
-    <td>0.6392</td>
+    <td>0.4859</td>
+    <td>0.6379</td>
     <td>0.5524</td>
   </tr>
 </tbody>
@@ -519,6 +531,12 @@
     <th>mAP</th>
   </tr></thead>
 <tbody>
+  <tr>
+    <td>book_covers</td>
+    <td>0.6535</td>
+    <td>0.7921</td>
+    <td>0.7162</td>
+  </tr>
   <tr>
     <td>business_cards</td>
     <td>0.5225</td>
@@ -563,9 +581,9 @@
   </tr>
   <tr>
     <td>AVERAGE</td>
-    <td>0.5882</td>
-    <td>0.7246</td>
-    <td>0.6474</td>
+    <td>0.5964</td>
+    <td>0.7330</td>
+    <td>0.6560</td>
   </tr>
 </tbody>
 </table>
@@ -580,6 +598,12 @@
     <th>mAP</th>
   </tr></thead>
 <tbody>
+  <tr>
+    <td>book_covers</td>
+    <td>0.5798</td>
+    <td>0.6782</td>
+    <td>0.5912</td>
+  </tr>
   <tr>
     <td>business_cards</td>
     <td>0.5050</td>
@@ -624,9 +648,9 @@
   </tr>
   <tr>
     <td>AVERAGE</td>
-    <td>0.5656</td>
-    <td>0.7026</td>
-    <td>0.6260</td>
+    <td>0.5599</td>
+    <td>0.6996</td>
+    <td>0.6216</td>
   </tr>
 </tbody>
 </table>
@@ -641,6 +665,12 @@
     <th>mAP</th>
   </tr></thead>
 <tbody>
+  <tr>
+    <td>book_covers</td>
+    <td>0.4282</td>
+    <td>0.4851</td>
+    <td>0.4538</td>
+  </tr>
   <tr>
     <td>business_cards</td>
     <td>0.2650</td>
@@ -686,8 +716,8 @@
   <tr>
     <td>AVERAGE</td>
     <td>0.4281</td>
-    <td>0.5540</td>
-    <td>0.4834</td>
+    <td>0.5454</td>
+    <td>0.4797</td>
   </tr>
 </tbody>
 </table>
@@ -702,6 +732,12 @@
     <th>mAP</th>
   </tr></thead>
 <tbody>
+  <tr>
+    <td>book_covers</td>
+    <td>0.3416</td>
+    <td>0.5198</td>
+    <td>0.4229</td>
+  </tr>
   <tr>
     <td>business_cards</td>
     <td>0.2950</td>
@@ -746,9 +782,9 @@
   </tr>
   <tr>
     <td>AVERAGE</td>
-    <td>0.3871</td>
-    <td>0.5636</td>
-    <td>0.4645</td>
+    <td>0.3814</td>
+    <td>0.5581</td>
+    <td>0.4593</td>
   </tr>
 </tbody>
 </table>
@@ -763,6 +799,12 @@
     <th>mAP</th>
   </tr></thead>
 <tbody>
+  <tr>
+    <td>book_covers</td>
+    <td>0.5866</td>
+    <td>0.7153</td>
+    <td>0.6407</td>
+  </tr>
   <tr>
     <td>business_cards</td>
     <td>0.7450</td>
@@ -807,9 +849,9 @@
   </tr>
   <tr>
     <td>AVERAGE</td>
-    <td>0.6654</td>
-    <td>0.7826</td>
-    <td>0.7182</td>
+    <td>0.6556</td>
+    <td>0.7742</td>
+    <td>0.7085</td>
   </tr>
 </tbody>
 </table>
@@ -824,6 +866,12 @@
     <th>mAP</th>
   </tr></thead>
 <tbody>
+  <tr>
+    <td>book_covers</td>
+    <td>0.7005</td>
+    <td>0.7698</td>
+    <td>0.7323</td>
+  </tr>
   <tr>
     <td>business_cards</td>
     <td>0.7725</td>
@@ -868,9 +916,9 @@
   </tr>
   <tr>
     <td>AVERAGE</td>
-    <td>0.6415</td>
-    <td>0.7543</td>
-    <td>0.6908</td>
+    <td>0.6489</td>
+    <td>0.7562</td>
+    <td>0.6959</td>
   </tr>
 </tbody>
 </table>
@@ -885,6 +933,12 @@
     <th>mAP</th>
   </tr></thead>
 <tbody>
+  <tr>
+    <td>book_covers</td>
+    <td>0.7921</td>
+    <td>0.8713</td>
+    <td>0.8271</td>
+  </tr>
   <tr>
     <td>business_cards</td>
     <td>0.8475</td>
@@ -929,9 +983,9 @@
   </tr>
   <tr>
     <td>AVERAGE</td>
-    <td>0.6945</td>
-    <td>0.8061</td>
-    <td>0.7439</td>
+    <td>0.7067</td>
+    <td>0.8143</td>
+    <td>0.7543</td>
   </tr>
 </tbody>
 </table>
