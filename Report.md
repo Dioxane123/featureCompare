@@ -405,9 +405,9 @@
   </tr>
   <tr>
     <td>business_cards</td>
-    <td>0.3500</td>
+    <td>0.3525</td>
     <td>0.5152</td>
-    <td>0.4208</td>
+    <td>0.4221</td>
   </tr>
   <tr>
     <td>cd_covers</td>
@@ -423,8 +423,8 @@
   </tr>
   <tr>
     <td>landmarks</td>
-    <td>0.5509</td>
-    <td>0.7565</td>
+    <td>0.5469</td>
+    <td>0.7585</td>
     <td>0.6397</td>
   </tr>
   <tr>
@@ -447,9 +447,9 @@
   </tr>
   <tr>
     <td>AVERAGE</td>
-    <td>0.4838</td>
-    <td>0.6297</td>
-    <td>0.5480</td>
+    <td>0.4836</td>
+    <td>0.6300</td>
+    <td>0.5482</td>
   </tr>
 </tbody>
 </table>
@@ -600,7 +600,7 @@
 <tbody>
   <tr>
     <td>book_covers</td>
-    <td>0.5798</td>
+    <td>0.5198</td>
     <td>0.6782</td>
     <td>0.5912</td>
   </tr>
@@ -626,7 +626,7 @@
     <td>landmarks</td>
     <td>0.5429</td>
     <td>0.7545</td>
-    <td>0.6367</td>
+    <td>0.6357</td>
   </tr>
   <tr>
     <td>museum_paintings</td>
