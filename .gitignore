@@ -8,3 +8,4 @@ dinos.txt
 __pycache__/
 result/
 exp.py
+.DS_Store
